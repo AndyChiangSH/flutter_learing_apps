@@ -16,74 +16,38 @@ class Home extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.red[600],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                padding: EdgeInsets.all(20),
-                color: Colors.amber,
-                child: Text("four"),
-              ),
-              Container(
-                padding: EdgeInsets.all(30),
-                color: Colors.cyan,
-                child: Text("five"),
-              ),
-              Container(
-                padding: EdgeInsets.all(40),
-                color: Colors.deepPurpleAccent,
-                child: Text("six"),
-              ),
-            ],
+        children: [
+          Expanded(
+            flex: 6,
+              child: Image.asset("assets/cat1.jpg")
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                padding: EdgeInsets.all(20),
-                color: Colors.amber,
-                child: Text("four"),
-              ),
-              Container(
-                padding: EdgeInsets.all(30),
-                color: Colors.cyan,
-                child: Text("five"),
-              ),
-              Container(
-                padding: EdgeInsets.all(40),
-                color: Colors.deepPurpleAccent,
-                child: Text("six"),
-              ),
-            ],
+          Expanded(
+            flex: 1,
+            child: Container(
+              padding: EdgeInsets.all(30),
+              color: Colors.amber,
+              child: Text("1"),
+            ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                padding: EdgeInsets.all(20),
-                color: Colors.amber,
-                child: Text("four"),
-              ),
-              Container(
-                padding: EdgeInsets.all(30),
-                color: Colors.cyan,
-                child: Text("five"),
-              ),
-              Container(
-                padding: EdgeInsets.all(40),
-                color: Colors.deepPurpleAccent,
-                child: Text("six"),
-              ),
-            ],
+          Expanded(
+            flex: 2,
+            child: Container(
+              padding: EdgeInsets.all(30),
+              color: Colors.cyan,
+              child: Text("2"),
+            ),
           ),
-
+          Expanded(
+            flex: 3,
+            child: Container(
+              padding: EdgeInsets.all(30),
+              color: Colors.deepPurpleAccent,
+              child: Text("3"),
+            ),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
