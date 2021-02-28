@@ -26,10 +26,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
 
     // navigate to home screen
     Navigator.pop(context, {
-      "location": instance.location,
-      "flag": instance.flag,
-      "time": instance.time,
-      "daytime": instance.daytime,
+      "worldTime": instance,
     });
   }
 

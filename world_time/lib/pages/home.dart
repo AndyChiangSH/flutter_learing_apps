@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+
+import 'package:world_time/services/world_time.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -13,18 +16,18 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
 
     data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
-    print(data);
+    print(data["worldTime"].time);
 
     String bgImage;
     Color bgColor;
     Color textColor;
-    print(data["daytime"]);
-    if (data["daytime"] == 0) {
+    // print(data["worldTime"].daytime);
+    if (data["worldTime"].daytime == 0) {
       bgImage = "morning.jpg";
       bgColor = Colors.cyan[200];
       textColor = Colors.black87;
     }
-    else if (data["daytime"] == 1) {
+    else if (data["worldTime"].daytime == 1) {
       bgImage = "evening.jpg";
       bgColor = Colors.orangeAccent[200];
       textColor = Colors.black87;
@@ -34,6 +37,14 @@ class _HomeState extends State<Home> {
       bgColor = Colors.purple[800];
       textColor = Colors.white;
     }
+
+    // 計時器，每10秒抓取時間並更新Home
+    Timer(Duration(seconds:10), (){
+      setState(() {
+        data["worldTime"].getTime();
+        print("update data");
+      });
+    });
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -50,12 +61,18 @@ class _HomeState extends State<Home> {
               SizedBox(height: 140,),
               FlatButton.icon(
                 onPressed: () async {
-                  dynamic result = await Navigator.pushNamed(context, "/location");
-                  setState(() {
-                    if (result != null) {
-                      data = result;
-                    }
-                  });
+                  try {
+                    dynamic result = await Navigator.pushNamed(context, "/location");
+                    setState(() {
+                      if (result != null) {
+                        data = result;
+                      }
+                    });
+                  }
+                  catch (e) {
+                    print("error : $e");
+                    setState(() {});
+                  }
                 },
                 icon: Icon(
                   Icons.edit_location,
@@ -74,7 +91,7 @@ class _HomeState extends State<Home> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    data["location"],
+                    data["worldTime"].location,
                     style: TextStyle(
                       fontSize: 28,
                       letterSpacing: 2,
@@ -85,7 +102,7 @@ class _HomeState extends State<Home> {
               ),
               SizedBox(height: 20,),
               Text(
-                data["time"],
+                data["worldTime"].time,
                 style: TextStyle(
                   fontSize: 60,
                   color: textColor,
