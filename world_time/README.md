@@ -2,6 +2,10 @@
 
 ninja_demo
 
+## note
+
+> 下載APK會抓不到時間資料，尚未解決QQ
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
